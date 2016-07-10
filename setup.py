@@ -11,6 +11,7 @@ with open(CHANGES_FILE) as fil:
 
 
 setup(
+    url="https://github.com/gurunars/dict-validator",
     name="dict-validator",
     description="A library for structural data validation.",
     version=version,
@@ -18,7 +19,7 @@ setup(
     author="Anton Berezin",
     author_email="gurunars@gmail.com",
     include_package_data=True,
-    setup_requires=["nose"],
+    setup_requires=["nose", "wheel"],
     tests_require=["coverage"],
     test_suite='nose.collector'
 )

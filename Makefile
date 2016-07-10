@@ -7,4 +7,10 @@ test:
 	pylint --rcfile=test/.pylintrc test
 	./setup.py nosetests
 
-.PHONY: test
+publish:
+	python setup.py sdist bdist_wheel upload -r pypitest
+
+publish-release:
+	python setup.py sdist bdist_wheel upload -r pypi
+
+.PHONY: test publish, publish-release
