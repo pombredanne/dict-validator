@@ -8,8 +8,8 @@ from ..regexp_field import RegexpField
 PROTOCOL = r"(https?:\/\/)?"
 DOMAIN = r"([\da-z\.-]+\.)+[a-z]{2,8}"
 PATH = r"(\/[\/\w \.-]*)?"
-QUERY = r"(\?[\/\w= \.-_]*)?"
-HASH = r"(#[\/\w= \.-_]*)?"
+QUERY = r"(\?[\/\w= \.-_&]*)?"
+HASH = r"(#[\/\w= \.-_&#]*)?"
 
 
 class UrlField(RegexpField):

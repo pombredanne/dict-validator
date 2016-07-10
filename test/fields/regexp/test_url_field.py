@@ -14,7 +14,7 @@ class UrlFieldTest(unittest.TestCase):
             [([], u'Value "{}" did not match url regexp'.format(value))])
 
     def test_ok(self):
-        self._ok("http://www.example.com?foo=bar#fff")
+        self._ok("http://www.example.com?foo=bar&zoo=loo#fff")
 
     def test_ok_ssl(self):
         self._ok("http://www.example.com?foo=bar#fff")
