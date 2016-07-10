@@ -13,6 +13,7 @@ with open(CHANGES_FILE) as fil:
 setup(
     url="https://github.com/gurunars/dict-validator",
     name="dict-validator",
+    install_requires=[],
     description="A library for structural data validation.",
     version=version,
     packages=find_packages(exclude=["test"]),
