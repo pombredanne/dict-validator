@@ -16,7 +16,7 @@ class Field(object):
         self._required = required
 
     def _describe(self):
-        """ Return a dict that would describe the field. """
+        """ Return a payload that would describe the field. """
 
     @abstractmethod
     def _validate(self, value):
@@ -28,15 +28,15 @@ class Field(object):
     # pylint: disable=no-self-use
     def serialize(self, value):
         """
-        :return: a dict ready to be sent over the wire
+        :return: a payload ready to be sent over the wire
         """
         return value
 
     # pylint: disable=no-self-use
     def deserialize(self, value):
         """
-        :param value: a dict sent over the wire
-        :return: a dict with Python specific data types
+        :param value: a payload sent over the wire
+        :return: a payload with Python specific data types
         """
         return value
 
@@ -60,7 +60,7 @@ class Field(object):
 
     def validate(self, value):
         """
-        :param value: a dict
+        :param value: a payload
         :yield: (path, erro_msg),
             e.g (["parent", "child"], "Error message")
         """
