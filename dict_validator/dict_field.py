@@ -15,6 +15,7 @@ class DictField(Field):
         super(DictField, self).__init__(*args, **kwargs)
         self._schema = schema
 
+    # pylint: disable=missing-docstring
     def _get_fields(self):
         for key in dir(self._schema):
             if key.startswith("__"):
