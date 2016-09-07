@@ -13,4 +13,4 @@ publish:
 publish-release:
 	python setup.py sdist bdist_wheel upload -r pypi
 
-.PHONY: test publish, publish-release
+.PHONY: test publish publish-release
