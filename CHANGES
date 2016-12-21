@@ -1,3 +1,8 @@
+0.0.7
+
+    * Added min/max limits for a number field
+    * Added object to dict and dict to object conversion
+
 0.0.6
 
     * Added Boolean field
