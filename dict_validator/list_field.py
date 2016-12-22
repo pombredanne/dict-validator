@@ -1,5 +1,3 @@
-""" dict_validator.list_field """
-
 from .field import Field
 
 

@@ -1,5 +1,3 @@
-""" dict_validator.field """
-
 from abc import ABCMeta, abstractmethod, abstractproperty
 
 

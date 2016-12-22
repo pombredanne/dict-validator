@@ -1,14 +1,26 @@
-""" dict_validator.fields.regexp.phone_field """
-
-from ..regexp_field import RegexpField
+from dict_validator.fields import RegexpField
 
 
 class PhoneField(RegexpField):
     """
     Make sure that the input is a valid phone number.
 
-    Valid phone: +35833442332, +3435 35 3434
-    Invalid phone: 03040000033
+    >>> from dict_validator import validate, deserialize
+
+    >>> class Schema:
+    ...     field = PhoneField()
+
+    >>> list(validate(Schema, {"field": '+358 807 12'}))
+    []
+
+    Has to start with a +
+
+    >>> list(validate(Schema, {"field": '358 807 12'}))
+    [(['field'], 'Did not match Regexp(phone)')]
+
+    >>> deserialize(Schema, {"field": '+358 807 12'})
+    {'field': '+35880712'}
+
     """
 
     def __init__(self, *args, **kwargs):

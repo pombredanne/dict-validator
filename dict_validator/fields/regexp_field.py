@@ -1,8 +1,6 @@
-""" dict_validator.fields.regexp_field """
-
 import re
 
-from ..field import Field
+from dict_validator import Field
 
 
 class RegexpField(Field):
@@ -10,20 +8,43 @@ class RegexpField(Field):
     Accept the input that matches a given regular expression.
 
     :param regexp: string value specifying the regular expression
+    :param metavar: a human readable description of what the regexp represents
+
+    >>> from dict_validator import validate, describe
+
+    >>> class Schema:
+    ...     field = RegexpField(r"^[ab]{2}$", metavar="TwoCharAOrB")
+
+    >>> list(validate(Schema, {"field": "aa"}))
+    []
+
+    >>> list(validate(Schema, {"field": "ab"}))
+    []
+
+    >>> list(validate(Schema, {"field": "aaa"}))
+    [(['field'], 'Did not match Regexp(TwoCharAOrB)')]
+
+    >>> list(validate(Schema, {"field": "cc"}))
+    [(['field'], 'Did not match Regexp(TwoCharAOrB)')]
+
+    >>> from pprint import pprint
+
+    >>> pprint(list(describe(Schema)), width=50)
+    [([], {'type': 'Dict'}),
+     (['field'],
+      {'pattern': '^[ab]{2}$',
+       'type': 'Regexp(TwoCharAOrB)'})]
+
     """
 
     def __init__(self, regexp, metavar=None, *args, **kwargs):
         super(RegexpField, self).__init__(*args, **kwargs)
         self._regexp = re.compile(regexp, re.UNICODE)
-        if metavar is None:
-            self._metavar = ""
-        else:
-            self._metavar = metavar + " "
+        self._metavar = metavar or ""
 
     def _validate(self, value):
         if not self._regexp.match(value):
-            return u"Value \"{}\" did not match {}regexp".format(value,
-                                                                 self._metavar)
+            return "Did not match {}".format(self._type)
 
     def _describe(self):
         return {
@@ -32,4 +53,4 @@ class RegexpField(Field):
 
     @property
     def _type(self):
-        return "Regexp"
+        return "Regexp({})".format(self._metavar)

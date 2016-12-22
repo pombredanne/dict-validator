@@ -1,11 +1,17 @@
-""" dict_validator.fields.regexp.slug_field """
-
-from ..regexp_field import RegexpField
+from dict_validator.fields import RegexpField
 
 
 class SlugField(RegexpField):
     """
     Lower case alphanumerics delimited with dashes.
+
+    >>> from dict_validator import validate
+
+    >>> class Schema:
+    ...     field = SlugField()
+
+    >>> list(validate(Schema, {"field": 'title-of-web-page'}))
+    []
     """
 
     def __init__(self, *args, **kwargs):

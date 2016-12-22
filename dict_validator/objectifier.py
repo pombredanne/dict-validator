@@ -1,18 +1,5 @@
-""" dict_validator.objectifier """
-
-
 class Payload(object):  # pylint: disable=too-few-public-methods
-    """ A base class for the data object to be used instead of a dict.
-
-    Instead of:
-
-        value["child"]["grandchild"][0]["offspring"]
-
-    Use:
-
-        value.child.grandchild[0].offspring
-
-    """
+    """A base class for the data object to be used instead of a dict."""
 
 
 def _transform_value(value, mapping_class, mapping_transformer):
@@ -27,10 +14,33 @@ def _transform_value(value, mapping_class, mapping_transformer):
 
 def dict_to_object(dict_payload):
     """
+    Convert a dict into a Python object.
+
     :param dict_payload: Value to be converted
     :type dict_payload: dict
-    :return: Pythonic object payload
-    :rtype: object
+    :return: payload
+    :rtype: Pythonic object
+
+    >>> DICT = {
+    ...    "parent": {
+    ...        "name": "Sam",
+    ...        "children": [
+    ...            {
+    ...                "name": "Bill",
+    ...                "grandchildren": [
+    ...                    {"name": "John"}
+    ...                ]
+    ...            }
+    ...        ]
+    ...    }
+    ... }
+    >>> value = dict_to_object(DICT)
+    >>> value.parent.name
+    'Sam'
+    >>> value.parent.children[0].name
+    'Bill'
+    >>> value.parent.children[0].grandchildren[0].name
+    'John'
     """
     placeholder = Payload()
     for key, value in dict_payload.iteritems():
@@ -45,10 +55,33 @@ def _not_builtin(name):
 
 def object_to_dict(object_payload):
     """
+    Convert a Python object into a dict.
+
     :param object_payload: Value to be converted
     :type object_payload: Pythonic object
-    :return: dict payload
+    :return: payload
     :rtype: dict
+
+    >>> from pprint import  pprint
+
+    >>> DICT = {
+    ...    "parent": {
+    ...        "name": "Sam",
+    ...        "children": [
+    ...            {
+    ...                "name": "Bill",
+    ...                "grandchildren": [
+    ...                    {"name": "John"}
+    ...                ]
+    ...            }
+    ...        ]
+    ...    }
+    ... }
+
+    >>> pprint(object_to_dict(dict_to_object(DICT)))
+    {'parent': {'children': [{'grandchildren': [{'name': 'John'}],
+                              'name': 'Bill'}],
+                'name': 'Sam'}}
     """
     placeholder = {}
     for key in filter(_not_builtin, dir(object_payload)):

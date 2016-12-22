@@ -1,6 +1,4 @@
-""" dict_validator.fields.number_field """
-
-from ..field import Field
+from dict_validator import Field
 
 
 class NumberField(Field):
@@ -10,6 +8,41 @@ class NumberField(Field):
     :param min: the smallest number allowed
     :param max: the largest number allowed
     :param can_be_float: True if the number can contain a dot
+
+    >>> from dict_validator import validate, describe
+
+    >>> class Schema:
+    ...     field = NumberField(min=10, max=20, can_be_float=False)
+
+    >>> list(validate(Schema, {"field": 15}))
+    []
+
+    >>> list(validate(Schema, {"field": 5}))
+    [(['field'], 'Too small')]
+
+    >>> list(validate(Schema, {"field": 25}))
+    [(['field'], 'Too large')]
+
+    The number has to be passed as a digit.
+
+    >>> list(validate(Schema, {"field": "15"}))
+    [(['field'], 'Not a valid number')]
+
+    To enable floats - set can_be_float=True (it is True by default).
+
+    >>> list(validate(Schema, {"field": 15.0}))
+    [(['field'], 'Not a valid number')]
+
+    >>> from pprint import pprint
+
+    >>> pprint(list(describe(Schema)), width=50)
+    [([], {'type': 'Dict'}),
+     (['field'],
+      {'can_be_float': False,
+       'max': 20,
+       'min': 10,
+       'type': 'Number'})]
+
     """
 
     # pylint: disable=redefined-builtin

@@ -1,5 +1,3 @@
-""" dict_validator.fields.url_field """
-
 from .email_field import EmailField
 from .phone_field import PhoneField
 from .url_field import UrlField

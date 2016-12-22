@@ -1,5 +1,3 @@
-""" dict_validator """
-
 from .helpers import validate, describe, serialize, deserialize
 from .field import Field
 from .list_field import ListField

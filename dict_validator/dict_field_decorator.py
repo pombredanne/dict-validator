@@ -1,5 +1,3 @@
-""" dict_validator.dict_field_decorator """
-
 import types
 
 from functools import wraps
