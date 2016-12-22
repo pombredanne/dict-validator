@@ -12,3 +12,8 @@ class BooleanFieldTest(unittest.TestCase):
     def test_nok(self):
         self.assertEqual(sorted(BooleanField().validate(11)),
                          [([], "Not a boolean")])
+
+    def test_description(self):
+        self.assertEqual(
+            list(BooleanField().describe()),
+            [([], {'type': 'Boolean'})])

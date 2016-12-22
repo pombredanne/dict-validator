@@ -19,6 +19,10 @@ class ChoiceField(Field):
         if value not in self._choices:
             return "Value \"{}\" is not among the choices".format(value)
 
+    @property
+    def _type(self):
+        return "Choice"
+
     def _describe(self):
         return {
             "choices": self._choices

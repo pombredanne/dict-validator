@@ -5,6 +5,10 @@ from dict_validator import describe, Field, ListField, DictField
 
 class String(Field):
 
+    @property
+    def _type(self):
+        return "String"
+
     def _validate(self, value):
         pass
 
@@ -24,9 +28,13 @@ class DescribeTest(unittest.TestCase):
 
         self.assertEqual(
             sorted(describe(Parent)),
-            [(['child'], {'description': 'Dict child'}),
+            [([], {'type': 'Dict'}),
+             (['child'], {'description': 'Dict child', 'type': 'Dict'}),
              (['child', 'items'],
-              {'description': 'A collection of important items'}),
-             (['child', 'items', '{N}'], {'description': 'String item'}),
+              {'description': 'A collection of important items',
+               'type': 'List'}),
+             (['child', 'items', '{N}'], {'description': 'String item',
+                                          'type': 'String'}),
              (['plain_field'],
-              {'description': 'Pure string', 'required': False})])
+              {'description': 'Pure string', 'required': False,
+               'type': 'String'})])

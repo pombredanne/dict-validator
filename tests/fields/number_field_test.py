@@ -38,6 +38,7 @@ class NumberFieldTest(unittest.TestCase):
 
     def test_describe(self):
         self.assertEqual(
-            [([], {'can_be_float': True, 'max': None, 'min': None})],
+            [([], {'can_be_float': True, 'max': None, 'min': None,
+                   'type': 'Number'})],
             sorted(NumberField().describe())
         )

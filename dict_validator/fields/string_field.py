@@ -8,6 +8,10 @@ class StringField(Field):
     Match any input of string type.
     """
 
+    @property
+    def _type(self):
+        return "String"
+
     def _validate(self, value):
         if not isinstance(value, basestring):
             return "Not a string"

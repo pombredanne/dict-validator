@@ -15,4 +15,4 @@ class ChoiceFieldTest(unittest.TestCase):
     def test_description(self):
         self.assertEqual(
             list(ChoiceField([1, 2, 3]).describe()),
-            [([], {'choices': [1, 2, 3]})])
+            [([], {'choices': [1, 2, 3], 'type': 'Choice'})])

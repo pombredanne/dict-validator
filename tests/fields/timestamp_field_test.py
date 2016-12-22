@@ -47,4 +47,4 @@ class TimestampFieldTest(unittest.TestCase):
     def test_description(self):
         self.assertEqual(
             list(TimestampField().describe()),
-            [([], {'type': 'datetime'})])
+            [([], {'format': 'datetime', 'type': 'Timestamp'})])

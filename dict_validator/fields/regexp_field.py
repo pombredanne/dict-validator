@@ -29,3 +29,7 @@ class RegexpField(Field):
         return {
             "pattern": self._regexp.pattern
         }
+
+    @property
+    def _type(self):
+        return "Regexp"

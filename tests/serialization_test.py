@@ -5,6 +5,10 @@ from dict_validator import serialize, deserialize, Field, ListField, DictField
 
 class String(Field):
 
+    @property
+    def _type(self):
+        return "NOT IMPORTANT"
+
     def _validate(self, value):
         pass
 

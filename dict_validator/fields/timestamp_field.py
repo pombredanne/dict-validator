@@ -50,7 +50,11 @@ class TimestampField(Field):
     def serialize(self, value):
         return datetime.datetime.strftime(value, self._format.value)
 
+    @property
+    def _type(self):
+        return "Timestamp"
+
     def _describe(self):
         return {
-            "type": self._format.name
+            "format": self._format.name
         }

@@ -18,4 +18,4 @@ class RegexpFieldTest(unittest.TestCase):
     def test_description(self):
         self.assertEqual(
             list(RegexpField(r"^[ab]{2}$").describe()),
-            [([], {'pattern': r'^[ab]{2}$'})])
+            [([], {'pattern': r'^[ab]{2}$', 'type': 'Regexp'})])

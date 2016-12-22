@@ -33,6 +33,10 @@ class NumberField(Field):
         if self._max is not None and value > self._max:
             return "Too large"
 
+    @property
+    def _type(self):
+        return "Number"
+
     def _describe(self):
         return {
             "min": self._min,

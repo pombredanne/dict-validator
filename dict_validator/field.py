@@ -1,6 +1,6 @@
 """ dict_validator.field """
 
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta, abstractmethod, abstractproperty
 
 
 class Field(object):
@@ -17,6 +17,14 @@ class Field(object):
 
     def _describe(self):
         """ Return a payload that would describe the field. """
+
+    @abstractproperty
+    def _type(self):
+        """
+        :return: a human readable string representing a type to be mentioned
+                 in the describe method. By default it is a class name.
+        :rtype: str
+        """
 
     @abstractmethod
     def _validate(self, value):
@@ -51,12 +59,12 @@ class Field(object):
             e.g (["parent", "child"], {"required": False})
         """
         description = self._describe() or {}
+        description["type"] = self._type
         if not self._required:
             description["required"] = False
         if self._description:
             description["description"] = self._description
-        if description:
-            yield ([], description)
+        yield ([], description)
 
     def validate(self, value):
         """

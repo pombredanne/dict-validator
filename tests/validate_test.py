@@ -5,6 +5,10 @@ from dict_validator import validate, Field, ListField, DictField
 
 class String(Field):
 
+    @property
+    def _type(self):
+        return "NOT IMPORTANT VALUE"
+
     def _validate(self, value):
         if not isinstance(value, basestring):
             return "Not a string"
@@ -115,6 +119,10 @@ class ValidateTest(unittest.TestCase):
     def test_yield_error(self):
 
         class SuperField(Field):
+
+            @property
+            def _type(self):
+                return "SuperField"
 
             def _validate(self, value):
                 yield "Error"

@@ -15,6 +15,10 @@ class ListField(Field):
         super(ListField, self).__init__(*args, **kwargs)
         self._schema = schema
 
+    @property
+    def _type(self):
+        return "List"
+
     def _validate(self, value):
         if not isinstance(value, list):
             yield ([], "Not a list")
