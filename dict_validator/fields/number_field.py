@@ -12,7 +12,7 @@ class NumberField(Field):
     >>> from dict_validator import validate, describe
 
     >>> class Schema:
-    ...     field = NumberField(min=10, max=20, can_be_float=False)
+    ...     field = NumberField(min=10, max=20)
 
     >>> list(validate(Schema, {"field": 15}))
     []
@@ -28,20 +28,23 @@ class NumberField(Field):
     >>> list(validate(Schema, {"field": "15"}))
     [(['field'], 'Not a valid number')]
 
-    To enable floats - set can_be_float=True (it is True by default).
-
-    >>> list(validate(Schema, {"field": 15.0}))
-    [(['field'], 'Not a valid number')]
-
     >>> from pprint import pprint
 
     >>> pprint(list(describe(Schema)), width=50)
     [([], {'type': 'Dict'}),
      (['field'],
-      {'can_be_float': False,
+      {'can_be_float': True,
        'max': 20,
        'min': 10,
        'type': 'Number'})]
+
+    To disable floats - set can_be_float to False (it is True by default).
+
+    >>> class Schema:
+    ...     field = NumberField(can_be_float=False)
+
+    >>> list(validate(Schema, {"field": 15.0}))
+    [(['field'], 'Not a valid number')]
 
     """
 
