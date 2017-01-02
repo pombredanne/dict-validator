@@ -8,7 +8,7 @@ test:
 	./custom_pylint.py --rcfile=dict_validator/.pylintrc dict_validator
 	./setup.py nosetests
 
-docs:
+docs: test
 	find dict_validator -name '*.py' ! -name '__init__.py' -print0 | \
 	    xargs -0 sphinx-apidoc -f -F -d 6 \
 	    -H "$(NAME)" \
