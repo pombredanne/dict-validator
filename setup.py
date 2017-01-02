@@ -20,7 +20,8 @@ setup(
     author="Anton Berezin",
     author_email="gurunars@gmail.com",
     include_package_data=True,
-    setup_requires=["nose", "wheel", "sphinx_rtd_theme", "sphinx"],
+    setup_requires=["nose", "wheel", "sphinx_rtd_theme", "sphinx", "pep8",
+                    "pyflakes", "pylint"],
     tests_require=["coverage"],
     test_suite='nose.collector'
 )

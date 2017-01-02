@@ -3,6 +3,7 @@ AUTHOR=$(shell python setup.py --author)
 VERSION=$(shell python setup.py --version)
 
 test:
+	./setup.py install --user
 	pep8 dict_validator
 	pyflakes dict_validator
 	./custom_pylint.py --rcfile=dict_validator/.pylintrc dict_validator
