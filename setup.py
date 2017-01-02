@@ -19,6 +19,5 @@ setup(
     packages=find_packages(exclude=["test"]),
     author="Anton Berezin",
     author_email="gurunars@gmail.com",
-    include_package_data=True,
-    test_suite='nose.collector'
+    include_package_data=True
 )

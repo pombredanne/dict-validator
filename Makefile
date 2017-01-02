@@ -6,9 +6,9 @@ test:
 	pep8 dict_validator
 	pyflakes dict_validator
 	./custom_pylint.py --rcfile=dict_validator/.pylintrc dict_validator
-	./setup.py nosetests
+	nosetests
 
-docs: test
+docs:
 	find dict_validator -name '*.py' ! -name '__init__.py' -print0 | \
 	    xargs -0 sphinx-apidoc -f -F -d 6 \
 	    -H "$(NAME)" \
@@ -20,8 +20,10 @@ docs: test
 	sphinx-build -b html .docs .docs/html
 	@echo "Docs @ file://$(CURDIR)/.docs/html/index.html"
 
-publish: docs
+publish-docs: docs
 	./publish_docs.sh $(shell git config --get remote.origin.url)
+
+publish: test publish-docs
 	python setup.py sdist bdist_wheel upload -r pypi
 
-.PHONY: test publish docs
+.PHONY: test publish docs publish-docs
