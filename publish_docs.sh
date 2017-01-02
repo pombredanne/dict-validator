@@ -9,6 +9,8 @@ NAME=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32)
 cp -ar .docs/html /tmp/${NAME}
 cd /tmp/${NAME}
 git init
+git config user.email "publisher@gurunars.com"
+git config user.name "Publisher"
 git checkout -b gh-pages
 touch .nojekyll
 git add .
