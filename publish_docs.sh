@@ -2,7 +2,7 @@
 
 set -eu
 
-ORIGIN=$1
+ORIGIN=$(git config --get remote.origin.url)
 
 NAME=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32)
 
