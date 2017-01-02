@@ -1,3 +1,8 @@
+0.1.0
+
+    * Wrote extensive code documentation
+    * Replace regular tests with doc tests
+
 0.0.7
 
     * Added min/max limits for a number field
