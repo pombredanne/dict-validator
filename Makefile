@@ -1,5 +1,3 @@
-
-
 test:
 	pep8 dict_validator
 	pyflakes dict_validator

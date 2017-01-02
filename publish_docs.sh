@@ -1,6 +1,12 @@
 #!/bin/bash
 
+SETUP_KEY=$1
+
 set -eu
+
+if [ ! -z "${SETUP_KEY}" ]; then
+    echo 111
+fi
 
 ORIGIN=$(git config --get remote.origin.url)
 
