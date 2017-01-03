@@ -8,6 +8,7 @@ This package contains most frequently used implementations of
  - :class:`TimestampField`
  - :class:`BooleanField`
  - :class:`NumberField`
+ - :class:`WildcardDictField`
 
 """
 
@@ -17,6 +18,7 @@ from .string_field import StringField
 from .timestamp_field import TimestampField
 from .boolean_field import BooleanField
 from .number_field import NumberField
+from .wildcard_dict_field import WildcardDictField
 
 __all__ = ["ChoiceField", "RegexpField", "StringField", "TimestampField",
-           "NumberField", "BooleanField"]
+           "NumberField", "BooleanField", "WildcardDictField"]
