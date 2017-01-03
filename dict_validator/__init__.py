@@ -7,9 +7,11 @@ In the heart of the library there are just a few top level concepts.
 To begin with a Schema definition is supposed to look as a collection of
 fields that looks as follows:
 
->>> class Schema:
-...     field1 = SampleField()
-...     field2 = OtherField()
+.. code:: python
+
+    class Schema:
+        field1 = SampleField()
+        field2 = OtherField()
 
 Where each field is a subclass of a :class:`Field` with zero or more
 constructor parameters.
