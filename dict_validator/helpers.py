@@ -1,7 +1,14 @@
-from .dict_field_decorator import dict_field_decorator
+import types
+
+from .dict_field import DictField
 
 
-@dict_field_decorator
+def _wrap_schema(schema):
+    if isinstance(schema, types.ClassType):
+        return DictField(description=schema.__doc__, schema=schema)
+    return schema
+
+
 def validate(schema, value):
     """
     Validate value again a given schema.
@@ -25,11 +32,6 @@ def validate(schema, value):
     ...     def _validate(self, value):
     ...         if value != "sample":
     ...             return "Not a sample"
-
-
-    Schema is nothing else but a plain python class with a bunch of
-    class-wide attributes representing fields.
-    Note, you may extend an "object" but it is truly optional.
 
     >>> class Schema:
     ...     field = SampleOnlyField()
@@ -160,10 +162,9 @@ def validate(schema, value):
     [(['child', 0, 'other_field'], 'Not a sample')]
 
     """
-    return schema.validate(value)
+    return _wrap_schema(schema).validate(value)
 
 
-@dict_field_decorator
 def describe(schema):
     """
     Describe a given schema.
@@ -229,10 +230,9 @@ def describe(schema):
        'required': False,
        'type': 'AnyValue'})]
     """
-    return schema.describe()
+    return _wrap_schema(schema).describe()
 
 
-@dict_field_decorator
 def serialize(schema, value):
     """
     Serialize a value before sending it over the wire.
@@ -284,10 +284,9 @@ def serialize(schema, value):
     {'child': {'items': ['SERIALIZED OUTGOING']},
      'plain_field': 'SERIALIZED OUTGOING'}
     """
-    return schema.serialize(value)
+    return _wrap_schema(schema).serialize(value)
 
 
-@dict_field_decorator
 def deserialize(schema, value):
     """
     Deserialize a value after sending it over the wire.
@@ -339,4 +338,4 @@ def deserialize(schema, value):
     {'child': {'items': ['DESERIALIZED INCOMING']},
      'plain_field': 'DESERIALIZED INCOMING'}
     """
-    return schema.deserialize(value)
+    return _wrap_schema(schema).deserialize(value)

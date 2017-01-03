@@ -1,3 +1,15 @@
+"""
+This package contains most frequently used subclasses of
+:class:`dict_validator.fields.RegexpField`
+
+ - :class:`EmailField`
+ - :class:`PhoneField`
+ - :class:`UrlField`
+ - :class:`NameField`
+ - :class:`SlugField`
+.
+"""
+
 from .email_field import EmailField
 from .phone_field import PhoneField
 from .url_field import UrlField

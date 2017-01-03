@@ -3,6 +3,11 @@ import datetime
 from dict_validator import Field
 
 
+def _datetime(value):
+    """Return datetime object."""
+    return value
+
+
 class TimestampField(Field):
     """
     UTC timestamp. Could be a datetime, a date or time. By default it is
@@ -87,7 +92,7 @@ class TimestampField(Field):
 
     class DateTime(object):
         value = "%Y-%m-%d %H:%M:%S.%f"
-        granulate = staticmethod(lambda value: value)
+        granulate = staticmethod(_datetime)
 
     class Date(object):
         value = "%Y-%m-%d"

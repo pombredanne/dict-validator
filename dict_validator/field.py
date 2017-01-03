@@ -5,6 +5,26 @@ class Field(object):
     """
     The "leaf" primitive data type in a schema.
     E.g. string, integer, float, etc.
+
+    :param description: textual explanation of what the field represents
+    :param required: True by default. If false - the field is optional
+
+    Each field subclass must implement :attr:`_type` abstract property and
+    :meth:`_validate` abstract methods.
+
+    Each field may also implement :meth:`_describe` method.
+
+    Apart from that if custom serialization mechanisms should be in place
+    serialize and deserialize methods can be overridden to provide non-default
+    behaviour.
+
+    See helper functions for reference implementations of the class.
+
+    .. document private functions
+    .. automethod:: _describe
+    .. autoattribute:: _type
+    .. automethod:: _validate
+
     """
 
     __metaclass__ = ABCMeta
@@ -14,7 +34,12 @@ class Field(object):
         self._required = required
 
     def _describe(self):
-        """ Return a payload that would describe the field. """
+        """
+        Implement to supply extra info for field's public description.
+
+        :return: **str:%JSON-SERIALIZABLE%** key:value pairs
+        :rtype: dict
+        """
 
     @abstractproperty
     def _type(self):
@@ -48,11 +73,17 @@ class Field(object):
 
     @property
     def required(self):
-        """ True if the field has to be present in the incoming dict """
+        """
+        Do not override.
+
+        :return: True if the field has to be present in the incoming dict
+        """
         return self._required
 
     def describe(self):
         """
+        Do not override.
+
         :yield: (path, {...description...}),
             e.g (["parent", "child"], {"required": False})
         """
@@ -66,6 +97,8 @@ class Field(object):
 
     def validate(self, value):
         """
+        Do not override.
+
         :param value: a payload
         :yield: (path, erro_msg),
             e.g (["parent", "child"], "Error message")
