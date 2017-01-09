@@ -57,6 +57,7 @@ def validate(schema, value):
     [(['field'], 'Not a sample')]
 
     By default all field are required
+
     >>> list(validate(Schema, {}))
     [([], 'Key "field" is missing')]
 

@@ -5,8 +5,8 @@ class ListField(Field):
     """
     A collection of arbitrary items.
 
-    :param schema: Field subclass to be used to validate/serialize individual
-        items of the collection
+    :param schema: Field subclass to be used to validate/serialize/deserialize
+        individual items of the collection
     """
 
     def __init__(self, schema, *args, **kwargs):

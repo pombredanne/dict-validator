@@ -1,11 +1,11 @@
 """
-The package aims to simplify schema declaration and validation customization
-by using regular Python classes to define data structures.
+The package aims to simplify payload validation using schemas represented by
+by regular Python classes.
 
 In the heart of the library there are just a few top level concepts.
 
-To begin with a Schema definition is supposed to look as a collection of
-fields that looks as follows:
+To begin with a Schema is nothing else but a collection of fields
+that boils down to a definition of the following shape:
 
 .. code:: python
 
@@ -21,16 +21,21 @@ Note, you may extend an "object" but it is truly optional.
 Once a schema is defined it is possible to employ one of the functions to
 process the payload and/or schema:
 
- - :func:`validate`
- - :func:`describe`
- - :func:`serialize`
- - :func:`deserialize`
+ - :func:`validate` - to check the payload
+ - :func:`describe` - to present the schema in a serializable format
+ - :func:`serialize` - to transform the payload with Python specific types
+   into something that could be sent over the wire
+ - :func:`deserialize` - reverse of :func:`serialize`
 
 Apart from that there are two helper functions that do not really rely on
 schema:
 
- - :func:`dict_to_object`
- - :func:`object_to_dict`
+ - :func:`dict_to_object` - to deeply transform a dict into an object to use
+   **a.b[0].c** instead of **a["b"][0]["c"]**
+ - :func:`object_to_dict` - reverse of :func:`dict_to_object`
+
+Most common Field subclasses can be found in :mod:`dict_validator.fields`.
+
 """
 
 from .helpers import validate, describe, serialize, deserialize
