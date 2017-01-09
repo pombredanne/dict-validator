@@ -1,3 +1,7 @@
+1.2.0
+
+    * Added CamelCase, PascalCase and UnderscoreCase fields
+
 1.1.0
 
     * Added support for WildcardDictField key and value validation
