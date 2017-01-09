@@ -1,3 +1,7 @@
+2.1.0
+
+    * Fixed a bug with dict serialization
+
 2.0.0
 
     * Made DictField.serialize method return an object

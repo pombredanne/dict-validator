@@ -55,13 +55,14 @@ class DictField(Field):
     def serialize(self, payload_object):
         ret_val = {}
         for key, subschema in self._get_fields():
-            ret_val[key] = subschema.serialize(
-                getattr(payload_object, key, None))
+            val = getattr(payload_object, key, None)
+            ret_val[key] = None if val is None else subschema.serialize(val)
         return ret_val
 
     def deserialize(self, payload_dict):
         ret_val = self._schema()
         for key, subschema in self._get_fields():
-            setattr(ret_val, key, subschema.deserialize(
-                payload_dict.get(key, None)))
+            val = payload_dict.get(key, None)
+            setattr(ret_val, key,
+                    None if val is None else subschema.deserialize(val))
         return ret_val
