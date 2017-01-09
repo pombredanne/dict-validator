@@ -12,6 +12,22 @@ class SlugField(RegexpField):
 
     >>> list(validate(Schema, {"field": 'title-of-web-page'}))
     []
+
+    Too many dashes
+
+    >>> list(validate(Schema, {"field": 'title--of-web-page'}))
+    [(['field'], 'Did not match Regexp(slug)')]
+
+    Starts with a dash
+
+    >>> list(validate(Schema, {"field": '-title-of-web-page'}))
+    [(['field'], 'Did not match Regexp(slug)')]
+
+    Ends with a dash
+
+    >>> list(validate(Schema, {"field": 'title-of-web-page-'}))
+    [(['field'], 'Did not match Regexp(slug)')]
+
     """
 
     def __init__(self, *args, **kwargs):
