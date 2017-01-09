@@ -10,6 +10,9 @@ This package contains most frequently used implementations of
  - :class:`NumberField`
  - :class:`WildcardDictField`
 
+Most common RegexpField subclasses can be found in
+:mod:`dict_validator.fields.regexp`.
+
 """
 
 from .choice_field import ChoiceField
