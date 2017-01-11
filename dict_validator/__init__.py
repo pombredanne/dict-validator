@@ -27,13 +27,6 @@ process the payload and/or schema:
    into something that could be sent over the wire
  - :func:`deserialize` - reverse of :func:`serialize`
 
-Apart from that there are two helper functions that do not really rely on
-schema:
-
- - :func:`dict_to_object` - to deeply transform a dict into an object to use
-   **a.b[0].c** instead of **a["b"][0]["c"]**
- - :func:`object_to_dict` - reverse of :func:`dict_to_object`
-
 Most common Field subclasses can be found in :mod:`dict_validator.fields`.
 
 """
@@ -42,7 +35,6 @@ from .helpers import validate, describe, serialize, deserialize
 from .field import Field
 from .list_field import ListField
 from .dict_field import DictField
-from .objectifier import dict_to_object, object_to_dict
 
 __all__ = ["validate", "describe", "serialize", "deserialize", "Field",
-           "DictField", "ListField", "dict_to_object", "object_to_dict"]
+           "DictField", "ListField"]

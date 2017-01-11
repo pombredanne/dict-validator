@@ -71,8 +71,8 @@ class EmailField(RegexpField):
     >>> list(validate(Schema, {"field": "test@not-example.com"}))
     [(['field'], 'Did not match Regexp(email)')]
 
-    >>> deserialize(Schema, {"field": "foobar@EXAMPLE.com"})
-    {'field': 'foobar@example.com'}
+    >>> deserialize(Schema, {"field": "foobar@EXAMPLE.com"}).field
+    'foobar@example.com'
 
     """
 

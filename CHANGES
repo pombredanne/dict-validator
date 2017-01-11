@@ -1,3 +1,10 @@
+2.0.0
+
+    * Made DictField.serialize method return an object
+    * Made DictField.deserialize method accept an object
+    * Added optional key and value type specs for WildcardDictField
+    * Removed dict_to_object and object_to_dict functions
+
 1.2.0
 
     * Added CamelCase, PascalCase and UnderscoreCase fields

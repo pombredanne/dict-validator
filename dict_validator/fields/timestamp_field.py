@@ -22,6 +22,7 @@ class TimestampField(Field):
     :param granularity: one of
         [TimestampField.DateTime, TimestampField.Date, TimestampField.Time]
 
+    >>> from argparse import Namespace
     >>> from pprint import pprint
 
     >>> from dict_validator import validate, describe, deserialize, serialize
@@ -41,11 +42,12 @@ class TimestampField(Field):
     >>> list(validate(Schema, {"field": '2016-07-10'}))
     [(['field'], 'Not a valid DateTime')]
 
-    >>> deserialize(Schema, {"field": "2016-07-10 13:06:04.698084"})
-    {'field': datetime.datetime(2016, 7, 10, 13, 6, 4, 698084)}
+    >>> deserialize(Schema, {"field": "2016-07-10 13:06:04.698084"}).field
+    datetime.datetime(2016, 7, 10, 13, 6, 4, 698084)
 
-    >>> serialize(Schema,
-    ...     {'field': datetime.datetime(2016, 7, 10, 13, 6, 4, 698084)})
+    >>> serialize(Schema, Namespace(
+    ...     field=datetime.datetime(2016, 7, 10, 13, 6, 4, 698084)
+    ... ))
     {'field': '2016-07-10 13:06:04.698084'}
 
     Accept Date only.
@@ -60,11 +62,12 @@ class TimestampField(Field):
     >>> list(validate(Schema, {"field": '2016-07-10'}))
     []
 
-    >>> deserialize(Schema, {"field": "2016-07-10"})
-    {'field': datetime.date(2016, 7, 10)}
+    >>> deserialize(Schema, {"field": "2016-07-10"}).field
+    datetime.date(2016, 7, 10)
 
-    >>> serialize(Schema,
-    ...     {'field': datetime.date(2016, 7, 10)})
+    >>> serialize(Schema, Namespace(
+    ...     field=datetime.date(2016, 7, 10)
+    ... ))
     {'field': '2016-07-10'}
 
     Accept Time only.
@@ -79,11 +82,12 @@ class TimestampField(Field):
     >>> list(validate(Schema, {"field": '13:06:04.698084'}))
     []
 
-    >>> deserialize(Schema, {"field": "13:06:04.698084"})
-    {'field': datetime.time(13, 6, 4, 698084)}
+    >>> deserialize(Schema, {"field": "13:06:04.698084"}).field
+    datetime.time(13, 6, 4, 698084)
 
-    >>> serialize(Schema,
-    ...     {'field': datetime.time(13, 6, 4, 698084)})
+    >>> serialize(Schema, Namespace(
+    ...     field=datetime.time(13, 6, 4, 698084)
+    ... ))
     {'field': '13:06:04.698084'}
 
     """

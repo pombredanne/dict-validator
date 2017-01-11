@@ -7,6 +7,7 @@ class DictField(Field):
 
     :param schema: class to be used for validation/serialization of the
         incoming values
+    :type schema: dict_validator.Schema
     """
 
     def __init__(self, schema, *args, **kwargs):
@@ -51,14 +52,16 @@ class DictField(Field):
             for (child_path, description) in subschema.describe():
                 yield ([key] + child_path, description)
 
-    def serialize(self, value):
+    def serialize(self, payload_object):
         ret_val = {}
-        for key, val in value.iteritems():
-            ret_val[key] = getattr(self._schema, key).serialize(val)
+        for key, subschema in self._get_fields():
+            ret_val[key] = subschema.serialize(
+                getattr(payload_object, key, None))
         return ret_val
 
-    def deserialize(self, value):
-        ret_val = {}
-        for key, val in value.iteritems():
-            ret_val[key] = getattr(self._schema, key).deserialize(val)
+    def deserialize(self, payload_dict):
+        ret_val = self._schema()
+        for key, subschema in self._get_fields():
+            setattr(ret_val, key, subschema.deserialize(
+                payload_dict.get(key, None)))
         return ret_val

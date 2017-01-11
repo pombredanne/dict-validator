@@ -242,10 +242,10 @@ def serialize(schema, value):
 
     :param schema: a class representing the structure to be used for
         serialization
-    :param value: a dict with Python specific data types
+    :param value: a pythonic object
     :return: a dict ready to be sent over the wire
 
-    >>> from dict_validator import Field, ListField, DictField
+    >>> from dict_validator import Field, ListField, DictField, serialize
 
     Each custom field must be a Field should implement a serialize method
     to enable value transformations by default the value is returned as is.
@@ -274,14 +274,21 @@ def serialize(schema, value):
     ...     plain_field = AnyValueField(description="Pure string",
     ...                                 required=False)
 
+    In order to construct a tree of python objects to serialize it later one
+    just use a Namespace class from the standard library.
+
+    >>> from argparse import Namespace
+
+    >>> payload = Namespace(
+    ...     plain_field="OUTGOING",
+    ...     child=Namespace(
+    ...         items=["OUTGOING"]
+    ...     )
+    ... )
+
     >>> from pprint import pprint
 
-    >>> pprint(serialize(Parent, {
-    ...     "child": {
-    ...         "items": ["OUTGOING"]
-    ...     },
-    ...     "plain_field": "OUTGOING"
-    ... }))
+    >>> pprint(serialize(Parent, payload))
     {'child': {'items': ['SERIALIZED OUTGOING']},
      'plain_field': 'SERIALIZED OUTGOING'}
     """
@@ -290,16 +297,16 @@ def serialize(schema, value):
 
 def deserialize(schema, value):
     """
-    Deserialize a value after sending it over the wire.
+    Deserialize a value after sending it over the wire into a pythonic object.
 
     Understands primitive, list and dict fields.
 
     :param schema: a class representing the structure to be used for
         deserialization
     :param value: a dict sent over the wire
-    :return: a dict with Python specific data types
+    :return: a pythonic object
 
-    >>> from dict_validator import Field, ListField, DictField
+    >>> from dict_validator import Field, ListField, DictField, deserialize
 
     Each custom field must be a Field should implement a deserialize method
     to enable value transformations by default the value is returned as is.
@@ -328,15 +335,18 @@ def deserialize(schema, value):
     ...     plain_field = AnyValueField(description="Pure string",
     ...                                 required=False)
 
-    >>> from pprint import pprint
-
-    >>> pprint(deserialize(Parent, {
+    >>> parent = deserialize(Parent, {
     ...     "child": {
     ...         "items": ["INCOMING"]
     ...     },
     ...     "plain_field": "INCOMING"
-    ... }))
-    {'child': {'items': ['DESERIALIZED INCOMING']},
-     'plain_field': 'DESERIALIZED INCOMING'}
+    ... })
+
+    >>> parent.plain_field
+    'DESERIALIZED INCOMING'
+
+    >>> parent.child.items[0]
+    'DESERIALIZED INCOMING'
+
     """
     return _wrap_schema(schema).deserialize(value)

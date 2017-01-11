@@ -22,7 +22,7 @@ class WildcardDictField(Field):
         validate/serialize/deserialize the values. Optional. If undefined the
         values are accepted as is.
 
-    >>> from dict_validator import validate, describe
+    >>> from dict_validator import validate, describe, serialize, deserialize
 
     >>> class Schema:
     ...     field = WildcardDictField()
@@ -60,6 +60,12 @@ class WildcardDictField(Field):
     ...     def _validate(self, value):
     ...         if not value.startswith("sample"):
     ...             return "Not a sample"
+    ...
+    ...     def serialize(self, value):
+    ...         return value.lstrip("py(").rstrip(")")
+    ...
+    ...     def deserialize(self, value):
+    ...         return "py(" +  value + ")"
 
     >>> class Schema:
     ...     field = WildcardDictField(key_schema=SampleOnlyField(),
@@ -85,6 +91,16 @@ class WildcardDictField(Field):
     ...     "sample_field": "foobar"
     ... }}))
     [(['field', 'sample_field'], 'Value error: Not a sample')]
+
+    >>> from argparse import Namespace
+
+    >>> serialize(Schema, Namespace(
+    ...     field={"py(foobar)": "py(sample_value)"}
+    ... ))
+    {'field': {'foobar': 'sample_value'}}
+
+    >>> deserialize(Schema, {"field": {"foobar": "sample_value"}}).field
+    {'py(foobar)': 'py(sample_value)'}
 
     """
 
@@ -114,3 +130,17 @@ class WildcardDictField(Field):
                 yield ([key] + child_path, "Key error: " + error)
             for (child_path, error) in self._value_schema.validate(payload):
                 yield ([key] + child_path, "Value error: " + error)
+
+    def serialize(self, value):
+        ret_val = {}
+        for key, val in value.iteritems():
+            ret_val[self._key_schema.serialize(key)] = \
+                self._value_schema.serialize(val)
+        return ret_val
+
+    def deserialize(self, value):
+        ret_val = {}
+        for key, val in value.iteritems():
+            ret_val[self._key_schema.deserialize(key)] = \
+                self._value_schema.deserialize(val)
+        return ret_val

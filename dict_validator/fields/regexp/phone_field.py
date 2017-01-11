@@ -18,8 +18,8 @@ class PhoneField(RegexpField):
     >>> list(validate(Schema, {"field": '358 807 12'}))
     [(['field'], 'Did not match Regexp(phone)')]
 
-    >>> deserialize(Schema, {"field": '+358 807 12'})
-    {'field': '+35880712'}
+    >>> deserialize(Schema, {"field": '+358 807 12'}).field
+    '+35880712'
 
     """
 
