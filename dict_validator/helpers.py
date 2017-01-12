@@ -276,12 +276,12 @@ def serialize(schema, value):
 
     >>> from pprint import pprint
 
-    >>> pprint(serialize(Parent, {
-    ...     "child": {
-    ...         "items": ["OUTGOING"]
-    ...     },
-    ...     "plain_field": "OUTGOING"
-    ... }))
+    >>> pprint(Parent(
+    ...     plain_field="OUTGOING",
+    ...     child=Child(
+    ...         items=["OUTGOING"]
+    ...     )
+    ... ).serialize())
     {'child': {'items': ['SERIALIZED OUTGOING']},
      'plain_field': 'SERIALIZED OUTGOING'}
     """
@@ -328,15 +328,18 @@ def deserialize(schema, value):
     ...     plain_field = AnyValueField(description="Pure string",
     ...                                 required=False)
 
-    >>> from pprint import pprint
-
-    >>> pprint(deserialize(Parent, {
+    >>> parent = Parent.deserialize({
     ...     "child": {
     ...         "items": ["INCOMING"]
     ...     },
     ...     "plain_field": "INCOMING"
-    ... }))
-    {'child': {'items': ['DESERIALIZED INCOMING']},
-     'plain_field': 'DESERIALIZED INCOMING'}
+    ... })
+
+    >>> parent.plain_field
+    'DESERIALIZED INCOMING'
+
+    >>> parent.child.items[0]
+    'DESERIALIZED INCOMING'
+
     """
     return _wrap_schema(schema).deserialize(value)
