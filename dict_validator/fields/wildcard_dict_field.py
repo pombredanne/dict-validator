@@ -114,3 +114,17 @@ class WildcardDictField(Field):
                 yield ([key] + child_path, "Key error: " + error)
             for (child_path, error) in self._value_schema.validate(payload):
                 yield ([key] + child_path, "Value error: " + error)
+
+    def serialize(self, value):
+        ret_val = {}
+        for key, val in value.iteritems():
+            ret_val[self._key_schema.serialize(key)] = \
+                self._value_schema.serialize(value)
+        return ret_val
+
+    def deserialize(self, value):
+        ret_val = {}
+        for key, val in value.iteritems():
+            ret_val[self._key_schema.deserialize(key)] = \
+                self._value_schema.deserialize(value)
+        return ret_val
