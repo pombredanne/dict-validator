@@ -1,0 +1,748 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>dict_validator.fields package &mdash; dict-validator 2.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="dict-validator 2.1.0 documentation" href="index.html"/>
+        <link rel="next" title="dict_validator.fields.regexp package" href="dict_validator.fields.regexp.html"/>
+        <link rel="prev" title="dict_validator package" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> dict-validator
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">dict_validator.fields package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dict_validator.fields.regexp.html">dict_validator.fields.regexp package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">dict-validator</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>dict_validator.fields package</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/dict_validator.fields.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-dict_validator.fields">
+<span id="dict-validator-fields-package"></span><h1>dict_validator.fields package<a class="headerlink" href="#module-dict_validator.fields" title="Permalink to this headline">¶</a></h1>
+<p>This package contains most frequently used implementations of
+<a class="reference internal" href="index.html#dict_validator.Field" title="dict_validator.Field"><code class="xref py py-class docutils literal"><span class="pre">dict_validator.Field</span></code></a>.</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#dict_validator.fields.ChoiceField" title="dict_validator.fields.ChoiceField"><code class="xref py py-class docutils literal"><span class="pre">ChoiceField</span></code></a></li>
+<li><a class="reference internal" href="#dict_validator.fields.RegexpField" title="dict_validator.fields.RegexpField"><code class="xref py py-class docutils literal"><span class="pre">RegexpField</span></code></a></li>
+<li><a class="reference internal" href="#dict_validator.fields.StringField" title="dict_validator.fields.StringField"><code class="xref py py-class docutils literal"><span class="pre">StringField</span></code></a></li>
+<li><a class="reference internal" href="#dict_validator.fields.TimestampField" title="dict_validator.fields.TimestampField"><code class="xref py py-class docutils literal"><span class="pre">TimestampField</span></code></a></li>
+<li><a class="reference internal" href="#dict_validator.fields.BooleanField" title="dict_validator.fields.BooleanField"><code class="xref py py-class docutils literal"><span class="pre">BooleanField</span></code></a></li>
+<li><a class="reference internal" href="#dict_validator.fields.NumberField" title="dict_validator.fields.NumberField"><code class="xref py py-class docutils literal"><span class="pre">NumberField</span></code></a></li>
+<li><a class="reference internal" href="#dict_validator.fields.WildcardDictField" title="dict_validator.fields.WildcardDictField"><code class="xref py py-class docutils literal"><span class="pre">WildcardDictField</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>Most common RegexpField subclasses can be found in
+<a class="reference internal" href="dict_validator.fields.regexp.html#module-dict_validator.fields.regexp" title="dict_validator.fields.regexp"><code class="xref py py-mod docutils literal"><span class="pre">dict_validator.fields.regexp</span></code></a>.</p>
+<dl class="class">
+<dt id="dict_validator.fields.ChoiceField">
+<em class="property">class </em><code class="descclassname">dict_validator.fields.</code><code class="descname">ChoiceField</code><span class="sig-paren">(</span><em>choices</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/choice_field.html#ChoiceField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.ChoiceField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dict_validator.field.Field</span></code></p>
+<p>Accept any type of input as long as it matches on of the choices
+mentioned in the provided list.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>choices</strong> &#8211; list of choices to match against</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dict_validator</span> <span class="k">import</span> <span class="n">validate</span><span class="p">,</span> <span class="n">describe</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Schema</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">field</span> <span class="o">=</span> <span class="n">ChoiceField</span><span class="p">(</span><span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;ONE&quot;</span><span class="p">,</span> <span class="s2">&quot;TWO&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;ONE&quot;</span><span class="p">}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Not among the choices&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Not among the choices&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;FOUR&quot;</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Not among the choices&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">describe</span><span class="p">(</span><span class="n">Schema</span><span class="p">)))</span>
+<span class="go">[([], {&#39;type&#39;: &#39;Dict&#39;}),</span>
+<span class="go"> ([&#39;field&#39;], {&#39;choices&#39;: [&#39;ONE&#39;, &#39;TWO&#39;, 3, 4], &#39;type&#39;: &#39;Choice&#39;})]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="dict_validator.fields.RegexpField">
+<em class="property">class </em><code class="descclassname">dict_validator.fields.</code><code class="descname">RegexpField</code><span class="sig-paren">(</span><em>regexp</em>, <em>metavar=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/regexp_field.html#RegexpField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.RegexpField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dict_validator.field.Field</span></code></p>
+<p>Accept the input that matches a given regular expression.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>regexp</strong> &#8211; string value specifying the regular expression</li>
+<li><strong>metavar</strong> &#8211; a human readable description of what the regexp represents</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dict_validator</span> <span class="k">import</span> <span class="n">validate</span><span class="p">,</span> <span class="n">describe</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Schema</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">field</span> <span class="o">=</span> <span class="n">RegexpField</span><span class="p">(</span><span class="s2">r&quot;^[ab]</span><span class="si">{2}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s2">&quot;TwoCharAOrB&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;aa&quot;</span><span class="p">}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;ab&quot;</span><span class="p">}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;aaa&quot;</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Did not match Regexp(TwoCharAOrB)&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;cc&quot;</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Did not match Regexp(TwoCharAOrB)&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">describe</span><span class="p">(</span><span class="n">Schema</span><span class="p">)),</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="go">[([], {&#39;type&#39;: &#39;Dict&#39;}),</span>
+<span class="go"> ([&#39;field&#39;],</span>
+<span class="go">  {&#39;pattern&#39;: &#39;^[ab]{2}$&#39;,</span>
+<span class="go">   &#39;type&#39;: &#39;Regexp(TwoCharAOrB)&#39;})]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="dict_validator.fields.StringField">
+<em class="property">class </em><code class="descclassname">dict_validator.fields.</code><code class="descname">StringField</code><span class="sig-paren">(</span><em>description=None</em>, <em>required=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/string_field.html#StringField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.StringField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dict_validator.field.Field</span></code></p>
+<p>Match any input of string type.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dict_validator</span> <span class="k">import</span> <span class="n">validate</span><span class="p">,</span> <span class="n">describe</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Schema</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">field</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;foobar&quot;</span><span class="p">}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Not a string&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">describe</span><span class="p">(</span><span class="n">Schema</span><span class="p">))</span>
+<span class="go">[([], {&#39;type&#39;: &#39;Dict&#39;}), ([&#39;field&#39;], {&#39;type&#39;: &#39;String&#39;})]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="dict_validator.fields.TimestampField">
+<em class="property">class </em><code class="descclassname">dict_validator.fields.</code><code class="descname">TimestampField</code><span class="sig-paren">(</span><em>granularity=&lt;class 'dict_validator.fields.timestamp_field.DateTime'&gt;</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/timestamp_field.html#TimestampField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.TimestampField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dict_validator.field.Field</span></code></p>
+<p>UTC timestamp. Could be a datetime, a date or time. By default it is
+datetime.</p>
+<p>The timestamp has to be formatted according to:
+<a class="reference external" href="https://en.wikipedia.org/wiki/ISO_8601">https://en.wikipedia.org/wiki/ISO_8601</a></p>
+<p>The incoming string is deserialized into datetime object.
+The outgoing datetime object is serialized into a string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>granularity</strong> &#8211; one of
+[TimestampField.DateTime, TimestampField.Date, TimestampField.Time]</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">argparse</span> <span class="k">import</span> <span class="n">Namespace</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dict_validator</span> <span class="k">import</span> <span class="n">validate</span><span class="p">,</span> <span class="n">describe</span><span class="p">,</span> <span class="n">deserialize</span><span class="p">,</span> <span class="n">serialize</span>
+</pre></div>
+</div>
+<p>By default a DateTime is expected.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Schema</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">field</span> <span class="o">=</span> <span class="n">TimestampField</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">describe</span><span class="p">(</span><span class="n">Schema</span><span class="p">)))</span>
+<span class="go">[([], {&#39;type&#39;: &#39;Dict&#39;}),</span>
+<span class="go"> ([&#39;field&#39;], {&#39;granularity&#39;: &#39;DateTime&#39;, &#39;type&#39;: &#39;Timestamp&#39;})]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s1">&#39;2016-07-10 13:06:04.698084&#39;</span><span class="p">}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s1">&#39;2016-07-10&#39;</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Not a valid DateTime&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">deserialize</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-07-10 13:06:04.698084&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">field</span>
+<span class="go">datetime.datetime(2016, 7, 10, 13, 6, 4, 698084)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="n">Namespace</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">field</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">698084</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">))</span>
+<span class="go">{&#39;field&#39;: &#39;2016-07-10 13:06:04.698084&#39;}</span>
+</pre></div>
+</div>
+<p>Accept Date only.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Schema</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">field</span> <span class="o">=</span> <span class="n">TimestampField</span><span class="p">(</span><span class="n">granularity</span><span class="o">=</span><span class="n">TimestampField</span><span class="o">.</span><span class="n">Date</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">describe</span><span class="p">(</span><span class="n">Schema</span><span class="p">)))</span>
+<span class="go">[([], {&#39;type&#39;: &#39;Dict&#39;}),</span>
+<span class="go"> ([&#39;field&#39;], {&#39;granularity&#39;: &#39;Date&#39;, &#39;type&#39;: &#39;Timestamp&#39;})]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s1">&#39;2016-07-10&#39;</span><span class="p">}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">deserialize</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;2016-07-10&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">field</span>
+<span class="go">datetime.date(2016, 7, 10)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="n">Namespace</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">field</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">))</span>
+<span class="go">{&#39;field&#39;: &#39;2016-07-10&#39;}</span>
+</pre></div>
+</div>
+<p>Accept Time only.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Schema</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">field</span> <span class="o">=</span> <span class="n">TimestampField</span><span class="p">(</span><span class="n">granularity</span><span class="o">=</span><span class="n">TimestampField</span><span class="o">.</span><span class="n">Time</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">describe</span><span class="p">(</span><span class="n">Schema</span><span class="p">)))</span>
+<span class="go">[([], {&#39;type&#39;: &#39;Dict&#39;}),</span>
+<span class="go"> ([&#39;field&#39;], {&#39;granularity&#39;: &#39;Time&#39;, &#39;type&#39;: &#39;Timestamp&#39;})]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s1">&#39;13:06:04.698084&#39;</span><span class="p">}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">deserialize</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;13:06:04.698084&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">field</span>
+<span class="go">datetime.time(13, 6, 4, 698084)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="n">Namespace</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">field</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">698084</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">))</span>
+<span class="go">{&#39;field&#39;: &#39;13:06:04.698084&#39;}</span>
+</pre></div>
+</div>
+<dl class="class">
+<dt id="dict_validator.fields.TimestampField.Date">
+<em class="property">class </em><code class="descname">Date</code><a class="reference internal" href="_modules/dict_validator/fields/timestamp_field.html#TimestampField.Date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.TimestampField.Date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="dict_validator.fields.TimestampField.Date.granulate">
+<code class="descname">granulate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dict_validator.fields.TimestampField.Date.granulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return date object with same year, month and day.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dict_validator.fields.TimestampField.Date.value">
+<code class="descname">value</code><em class="property"> = '%Y-%m-%d'</em><a class="headerlink" href="#dict_validator.fields.TimestampField.Date.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dict_validator.fields.TimestampField.DateTime">
+<em class="property">class </em><code class="descclassname">TimestampField.</code><code class="descname">DateTime</code><a class="reference internal" href="_modules/dict_validator/fields/timestamp_field.html#TimestampField.DateTime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.TimestampField.DateTime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="staticmethod">
+<dt id="dict_validator.fields.TimestampField.DateTime.granulate">
+<em class="property">static </em><code class="descname">granulate</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#dict_validator.fields.TimestampField.DateTime.granulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return datetime object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dict_validator.fields.TimestampField.DateTime.value">
+<code class="descname">value</code><em class="property"> = '%Y-%m-%d %H:%M:%S.%f'</em><a class="headerlink" href="#dict_validator.fields.TimestampField.DateTime.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dict_validator.fields.TimestampField.Time">
+<em class="property">class </em><code class="descclassname">TimestampField.</code><code class="descname">Time</code><a class="reference internal" href="_modules/dict_validator/fields/timestamp_field.html#TimestampField.Time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.TimestampField.Time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="dict_validator.fields.TimestampField.Time.granulate">
+<code class="descname">granulate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dict_validator.fields.TimestampField.Time.granulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return time object with same time but with tzinfo=None.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dict_validator.fields.TimestampField.Time.value">
+<code class="descname">value</code><em class="property"> = '%H:%M:%S.%f'</em><a class="headerlink" href="#dict_validator.fields.TimestampField.Time.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="method">
+<dt id="dict_validator.fields.TimestampField.deserialize">
+<code class="descclassname">TimestampField.</code><code class="descname">deserialize</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/timestamp_field.html#TimestampField.deserialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.TimestampField.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dict_validator.fields.TimestampField.serialize">
+<code class="descclassname">TimestampField.</code><code class="descname">serialize</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/timestamp_field.html#TimestampField.serialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.TimestampField.serialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dict_validator.fields.NumberField">
+<em class="property">class </em><code class="descclassname">dict_validator.fields.</code><code class="descname">NumberField</code><span class="sig-paren">(</span><em>min=None</em>, <em>max=None</em>, <em>can_be_float=True</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/number_field.html#NumberField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.NumberField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dict_validator.field.Field</span></code></p>
+<p>Match integers, floats and longs</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>min</strong> &#8211; the smallest number allowed</li>
+<li><strong>max</strong> &#8211; the largest number allowed</li>
+<li><strong>can_be_float</strong> &#8211; True if the number can contain a dot</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dict_validator</span> <span class="k">import</span> <span class="n">validate</span><span class="p">,</span> <span class="n">describe</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Schema</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">field</span> <span class="o">=</span> <span class="n">NumberField</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Too small&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="mi">25</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Too large&#39;)]</span>
+</pre></div>
+</div>
+<p>The number has to be passed as a digit.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="s2">&quot;15&quot;</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Not a valid number&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">describe</span><span class="p">(</span><span class="n">Schema</span><span class="p">)),</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="go">[([], {&#39;type&#39;: &#39;Dict&#39;}),</span>
+<span class="go"> ([&#39;field&#39;],</span>
+<span class="go">  {&#39;can_be_float&#39;: True,</span>
+<span class="go">   &#39;max&#39;: 20,</span>
+<span class="go">   &#39;min&#39;: 10,</span>
+<span class="go">   &#39;type&#39;: &#39;Number&#39;})]</span>
+</pre></div>
+</div>
+<p>To disable floats - set can_be_float to False (it is True by default).</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Schema</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">field</span> <span class="o">=</span> <span class="n">NumberField</span><span class="p">(</span><span class="n">can_be_float</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Not a valid number&#39;)]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="dict_validator.fields.BooleanField">
+<em class="property">class </em><code class="descclassname">dict_validator.fields.</code><code class="descname">BooleanField</code><span class="sig-paren">(</span><em>description=None</em>, <em>required=True</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/boolean_field.html#BooleanField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.BooleanField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dict_validator.field.Field</span></code></p>
+<p>Match a boolean.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dict_validator</span> <span class="k">import</span> <span class="n">validate</span><span class="p">,</span> <span class="n">describe</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Schema</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">field</span> <span class="o">=</span> <span class="n">BooleanField</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Not a boolean&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">describe</span><span class="p">(</span><span class="n">Schema</span><span class="p">))</span>
+<span class="go">[([], {&#39;type&#39;: &#39;Dict&#39;}), ([&#39;field&#39;], {&#39;type&#39;: &#39;Boolean&#39;})]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="dict_validator.fields.WildcardDictField">
+<em class="property">class </em><code class="descclassname">dict_validator.fields.</code><code class="descname">WildcardDictField</code><span class="sig-paren">(</span><em>key_schema=None</em>, <em>value_schema=None</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/wildcard_dict_field.html#WildcardDictField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.WildcardDictField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dict_validator.field.Field</span></code></p>
+<p>Match a dict with any dict with any key/value pairs.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key_schema</strong> &#8211; Field subclass to be used to
+validate/serialize/deserialize the keys. Optional. If undefined the
+keys are accepted as is.</li>
+<li><strong>value_schema</strong> &#8211; Field subclass to be used to
+validate/serialize/deserialize the values. Optional. If undefined the
+values are accepted as is.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dict_validator</span> <span class="k">import</span> <span class="n">validate</span><span class="p">,</span> <span class="n">describe</span><span class="p">,</span> <span class="n">serialize</span><span class="p">,</span> <span class="n">deserialize</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Schema</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">field</span> <span class="o">=</span> <span class="n">WildcardDictField</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="p">{}}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;value&quot;</span><span class="p">}}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="mi">11</span><span class="p">}))</span>
+<span class="go">[([&#39;field&#39;], &#39;Not a dict&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pprint</span> <span class="k">import</span> <span class="n">pprint</span>
+</pre></div>
+</div>
+<p>In field&#8217;s description there are two special nodes: <em>{KEY}</em> and <em>{VALUE}</em>
+that respectively correspond to the schemas applied to keys and values of
+the payload.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">describe</span><span class="p">(</span><span class="n">Schema</span><span class="p">)),</span> <span class="n">width</span><span class="o">=</span><span class="mi">70</span><span class="p">)</span>
+<span class="go">[([], {&#39;type&#39;: &#39;Dict&#39;}),</span>
+<span class="go"> ([&#39;field&#39;], {&#39;type&#39;: &#39;WildcardDict&#39;}),</span>
+<span class="go"> ([&#39;field&#39;, &#39;{KEY}&#39;], {&#39;type&#39;: &#39;AnyValue&#39;}),</span>
+<span class="go"> ([&#39;field&#39;, &#39;{VALUE}&#39;], {&#39;type&#39;: &#39;AnyValue&#39;})]</span>
+</pre></div>
+</div>
+<p>If it is need it is possible to have validation for keys, values or both.
+This can be achieved by defining respective schemas.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SampleOnlyField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="nd">@property</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;SampleOnly&quot;</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;sample&quot;</span><span class="p">):</span>
+<span class="gp">... </span>            <span class="k">return</span> <span class="s2">&quot;Not a sample&quot;</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;py(&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="s2">&quot;py(&quot;</span> <span class="o">+</span>  <span class="n">value</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Schema</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">field</span> <span class="o">=</span> <span class="n">WildcardDictField</span><span class="p">(</span><span class="n">key_schema</span><span class="o">=</span><span class="n">SampleOnlyField</span><span class="p">(),</span>
+<span class="gp">... </span>                              <span class="n">value_schema</span><span class="o">=</span><span class="n">SampleOnlyField</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pprint</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">describe</span><span class="p">(</span><span class="n">Schema</span><span class="p">)),</span> <span class="n">width</span><span class="o">=</span><span class="mi">70</span><span class="p">)</span>
+<span class="go">[([], {&#39;type&#39;: &#39;Dict&#39;}),</span>
+<span class="go"> ([&#39;field&#39;], {&#39;type&#39;: &#39;WildcardDict&#39;}),</span>
+<span class="go"> ([&#39;field&#39;, &#39;{KEY}&#39;], {&#39;type&#39;: &#39;SampleOnly&#39;}),</span>
+<span class="go"> ([&#39;field&#39;, &#39;{VALUE}&#39;], {&#39;type&#39;: &#39;SampleOnly&#39;})]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">&quot;sample_field&quot;</span><span class="p">:</span> <span class="s2">&quot;sample_value&quot;</span>
+<span class="gp">... </span><span class="p">}}))</span>
+<span class="go">[]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">&quot;foobar&quot;</span><span class="p">:</span> <span class="s2">&quot;sample_value&quot;</span>
+<span class="gp">... </span><span class="p">}}))</span>
+<span class="go">[([&#39;field&#39;, &#39;foobar&#39;], &#39;Key error: Not a sample&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">validate</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s2">&quot;sample_field&quot;</span><span class="p">:</span> <span class="s2">&quot;foobar&quot;</span>
+<span class="gp">... </span><span class="p">}}))</span>
+<span class="go">[([&#39;field&#39;, &#39;sample_field&#39;], &#39;Value error: Not a sample&#39;)]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">argparse</span> <span class="k">import</span> <span class="n">Namespace</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">serialize</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="n">Namespace</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">field</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;py(foobar)&quot;</span><span class="p">:</span> <span class="s2">&quot;py(sample_value)&quot;</span><span class="p">}</span>
+<span class="gp">... </span><span class="p">))</span>
+<span class="go">{&#39;field&#39;: {&#39;foobar&#39;: &#39;sample_value&#39;}}</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">deserialize</span><span class="p">(</span><span class="n">Schema</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;field&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;foobar&quot;</span><span class="p">:</span> <span class="s2">&quot;sample_value&quot;</span><span class="p">}})</span><span class="o">.</span><span class="n">field</span>
+<span class="go">{&#39;py(foobar)&#39;: &#39;py(sample_value)&#39;}</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="dict_validator.fields.WildcardDictField.describe">
+<code class="descname">describe</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/wildcard_dict_field.html#WildcardDictField.describe"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.WildcardDictField.describe" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dict_validator.fields.WildcardDictField.deserialize">
+<code class="descname">deserialize</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/wildcard_dict_field.html#WildcardDictField.deserialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.WildcardDictField.deserialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dict_validator.fields.WildcardDictField.serialize">
+<code class="descname">serialize</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/dict_validator/fields/wildcard_dict_field.html#WildcardDictField.serialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#dict_validator.fields.WildcardDictField.serialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dict_validator.fields.regexp.html">dict_validator.fields.regexp package</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dict_validator.fields.regexp.html" class="btn btn-neutral float-right" title="dict_validator.fields.regexp package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="dict_validator package" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Anton Berezin.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'2.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

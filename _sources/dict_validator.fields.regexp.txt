@@ -1,0 +1,8 @@
+dict_validator.fields.regexp package
+====================================
+
+.. automodule:: dict_validator.fields.regexp
+    :members:
+    :undoc-members:
+    :show-inheritance:
+

@@ -1,0 +1,15 @@
+dict_validator package
+======================
+
+.. automodule:: dict_validator
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+
+    dict_validator.fields
+
